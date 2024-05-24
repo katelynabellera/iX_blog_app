@@ -3,6 +3,7 @@ import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import HomePage from "./Components/HomePage";
 import BlogsPage from "./Components/BlogsPage";
+import BlogPage from "./Components/Blog";
 /* import "bootstrap/dist/js/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "bootstrap-icons/dotn/bootstrap-icons.css"; */
@@ -23,10 +24,10 @@ const router = createBrowserRouter([
     path: "/blogs",
     element: <BlogsPage />,
   },
-  // {
-  //   path: "/blogs/:categoryId?",
-  //   element: <BlogsPage />,
-  // },
+  {
+    path: "/blogs/:blogId",
+    element: <BlogPage />,
+  },
 ]);
 
 function App() {
