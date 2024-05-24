@@ -5,14 +5,16 @@ import "./index.css";
 import BlogItem from "../BlogItem";
 
 export default function BlogGrid({ blogPosts }) {
+  //check if there are elements in the blog grid
   if (!blogPosts || !blogPosts.length) {
     return null;
   }
 
   return (
     <>
-      <div className="blog-grid-container">
-        <div className="item-1">
+      <div className="blog-grid-container py-2 w-100 d-flex">
+        {/* first component in this flexbox, will be next to other block */}
+        <div className="item-1 w-50">
           {blogPosts.length > 0 && (
             <BlogItem
               imageOrientation={"top"}
@@ -22,9 +24,9 @@ export default function BlogGrid({ blogPosts }) {
           )}
         </div>
 
-        <div className="right-block">
+        <div className="right-block w-50">
           {blogPosts.length > 1 && (
-            <div className="item-2">
+            <div className="item-2 h-50">
               <BlogItem
                 imageOrientation={"left"}
                 index={1}
@@ -34,14 +36,14 @@ export default function BlogGrid({ blogPosts }) {
           )}
 
           {blogPosts.length > 2 && (
-            <div className="item-3">
+            <div className="item-3 h-50">
               <BlogItem index={2} blogPost={blogPosts[2]} />
             </div>
           )}
         </div>
       </div>
       {blogPosts.length > 3 && (
-        <div className="item-4">
+        <div className="item-4 w-100">
           <BlogItem index={3} blogPost={blogPosts[3]} />
         </div>
       )}

@@ -1,4 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
+import "./index.css";
+//validates the properties you're passing in to the component
 
 import Categories from "../Categories";
 import "./index.css";
@@ -30,4 +33,9 @@ export default function BlogItemText({ blogPost, headerFontSize }) {
       <Categories blogPost={blogPost} />
     </div>
   );
+}
+
+BlogItemText.prototype = {
+  blogPost: PropTypes.array.isRequired,
+
 }

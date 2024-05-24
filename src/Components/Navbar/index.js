@@ -1,4 +1,5 @@
 import React from "react";
+import "./index.css";
 
 export default function Navbar() {
   return (
@@ -23,6 +24,21 @@ export default function Navbar() {
             <li className="nav-item">
               <a className="nav-link active" aria-current="page" href="#">
                 Home
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="#categories">
+                Categories
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="#">
+                Blogs
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="#">
+                About
               </a>
             </li>
           </ul>

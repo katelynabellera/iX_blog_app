@@ -7,6 +7,8 @@ import BlogGrid from "../BlogGrid";
 import SubHeading from "../Subheading";
 import CategoryList from "../CategoryList";
 
+
+
 // Week 1: Import the blogPosts and categories from the dummy-data.json file
 const data = require("../../dummy-data.json");
 const blogs = data.blogPosts.reverse();
@@ -20,6 +22,7 @@ export default function HomePage() {
         <Heading />
         <SubHeading subHeading={"Recent Blog Posts"} />
         <BlogGrid blogPosts={blogs}></BlogGrid>
+        {/* <BlogList blogPosts={blogs}></BlogList> */}
         <SubHeading subHeading={"Categories"} />
         <CategoryList categories={categories}></CategoryList>
         {/* <Footer /> */}
