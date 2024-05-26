@@ -12,6 +12,7 @@ export default function Categories({ blogPost }) {
             style={{
               color: category.color,
               backgroundColor: category.color + "33",
+              borderRadius: 10,
             }}
           >
             {category.title}

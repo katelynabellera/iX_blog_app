@@ -1,3 +1,7 @@
 li a:hover{
     text-decoration: underline;
 }
+
+body {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
