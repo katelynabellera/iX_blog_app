@@ -1,40 +1,43 @@
-async function getBlogs(onSuccess, onError) {
-    //return new Promise((resolve, reject) => {
-    try {
-        const data = await fetch("https://iX-blog-app", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        })
-        const blogsAPIData = await data 
-            .json()
-            return blogsAPIData;
-    }
-    catch (error) {
-        throw new Error(error);
-    }
-        
-        // .then((data) => {
-        //     console.log("Success");
-        //     data
-        //         .json()
-        //         .then((blogs) => {
-        //             console.log(blogs.message);
-        //             onSuccess(blogs.data);
-        //         })
-        //         .catch((error) => {
-        //             onError(error);
-        //         });
-        //     onSuccess();
-        // })
-        // .catch((error) => {
-        //     console.log("Error");
-        //     onError();
-        // });
-    
-        
-   // })
-    
+const getBlogs = async () => {
+  try {
+    const data = await fetch(
+      "https://ix-blog-app-2d5c689132cd.herokuapp.com/api/blogs",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const blogsApiData = await data.json();
+    return blogsApiData.data;
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
+const getBlogsByCategoryId = async (categoryId) => {
+  try {
+    const data = await fetch(
+      "https://ix-blog-app-2d5c689132cd.herokuapp.com/api/blogs/category/" +
+        categoryId,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const blogsApiData = await data.json();
+    return blogsApiData.data;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const blogService = {
+  getBlogs,
+  getBlogsByCategoryId,
+};
+
+export default blogService;

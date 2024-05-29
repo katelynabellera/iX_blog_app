@@ -5,6 +5,11 @@ import BlogItem from "../BlogItem";
 
 
 export default function BlogList({ blogPosts }) {
+
+  if (!blogPosts && !blogPosts?.length) {
+    return null;
+  }
+
   return (
     <div className="blog-list d-flex w-100">
       {blogPosts.map((blogPost, index) => {

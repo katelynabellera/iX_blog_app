@@ -7,30 +7,32 @@ import BlogGrid from "../BlogGrid";
 import SubHeading from "../Subheading";
 import CategoryList from "../CategoryList";
 import blogService from "../../Services/blogService";
-
+import categoryService from "../../Services/categoryService";
 
 // Week 1: Import the blogPosts and categories from the dummy-data.json file
-const data = require("../../dummy-data.json");
-const blogs = data.blogPosts.reverse();
-const categories = data.categories;
+// const data = require("../../dummy-data.json");
+// const blogs = data.blogPosts.reverse();
+// const categories = data.categories;
 
 export default function HomePage() {
 
-  // const [blogs, setBlogs] = useState()
+  const [blogs, setBlogs] = useState()
+  const [categories, setCategories] = useState()
 
-  // useEffect(() => {
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const blogsRes = await blogService.getBlogs();
+        const categoryRes = await categoryService.getCategories();
 
-
-
-  //  try {
-  //     const blogsResult = await blogService 
-  //       .getBlogs()
-  //     setBlogs(blogsRes) 
-  //  }
-  //  catch (err) {
-  //     throw new Error(error);
-  //  }
-  // }, []);
+        setBlogs(blogsRes);
+        setCategories(categoryRes);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchBlogs();
+  }, []);
 
   return (
     <>
@@ -42,6 +44,7 @@ export default function HomePage() {
         {/* <BlogList blogPosts={blogs}></BlogList> */}
         <SubHeading subHeading={"Categories"} />
         <CategoryList categories={categories}></CategoryList>
+        {/* <CategoryList categories={categories}></CategoryList> */}
         {/* <Footer /> */}
       </div>
     </>
