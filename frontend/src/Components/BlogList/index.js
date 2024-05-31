@@ -1,38 +1,35 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import "./index.css";
+
 import BlogItem from "../BlogItem";
 
-
-export default function BlogList({ blogPosts }) {
-
+export default function BlogList({ blogPosts, setEditBlog, setDeleteBlog }) {
   if (!blogPosts && !blogPosts?.length) {
     return null;
   }
 
+  // TODO: Styling
   return (
-    <div className="blog-list d-flex w-100">
-      {blogPosts.map((blogPost, index) => {
+    <div className="d-flex w-100">
+      {blogPosts.map((blog, index) => {
         return (
-          <div
+          <BlogItem
             key={index}
-            style={{
-              width: "100%",
-            }}
-          >
-            <BlogItem
-              index={index}
-              blogPost={blogPost}
-              imageOrientation={"top"}
-              setBlog={() => {} }
-            />
-          </div>
+            index={index}
+            blogPost={blog}
+            setBlog={() => {}}
+            imageOrientation={"top"}
+            setEditBlog={setEditBlog}
+            setDeleteBlog={setDeleteBlog}
+          />
         );
       })}
     </div>
   );
 }
 
-BlogList.propTypes = {
-  blogPosts: PropTypes.array.isRequired,
+BlogList.prototype = {
+    blogPosts: PropTypes.array.isRequired,
+    setEditBlog: PropTypes.func.isRequired,
+    setDeleteBlog: PropTypes.func.isRequired,
 };

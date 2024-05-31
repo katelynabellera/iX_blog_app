@@ -8,6 +8,9 @@ import SubHeading from "../Subheading";
 import CategoryList from "../CategoryList";
 import blogService from "../../Services/blogService";
 import categoryService from "../../Services/categoryService";
+import SuccessToast from "../SuccessToast";
+import ErrorToast from "../ErrorToast";
+import Loading from "../Loading";
 
 // Week 1: Import the blogPosts and categories from the dummy-data.json file
 // const data = require("../../dummy-data.json");
@@ -15,24 +18,45 @@ import categoryService from "../../Services/categoryService";
 // const categories = data.categories;
 
 export default function HomePage() {
+  const [blogs, setBlogs] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [isError, setIsError] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [message, setMessage] = useState("");
 
-  const [blogs, setBlogs] = useState()
-  const [categories, setCategories] = useState()
 
   useEffect(() => {
-    const fetchBlogs = async () => {
+    const fetchData = async () => {
       try {
-        const blogsRes = await blogService.getBlogs();
-        const categoryRes = await categoryService.getCategories();
-
-        setBlogs(blogsRes);
-        setCategories(categoryRes);
-      } catch (err) {
-        console.log(err);
+        setIsLoading(true);
+        const blogs = await blogService.fetchBlogs();
+        setBlogs(blogs.data.reverse());
+        setIsSuccess(true);
+        setMessage(blogs.message);
+        setIsLoading(false);
+      } catch (error) {
+        setIsError(true);
+        setMessage(error.message);
+        setIsLoading(false);
       }
     };
-    fetchBlogs();
+    fetchData();
   }, []);
+
+  const resetSuccess = () => {
+    setIsSuccess(false);
+    setMessage("");
+  }
+
+   const resetError = () => {
+    setIsError(false);
+    setMessage("");
+  }
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -41,12 +65,20 @@ export default function HomePage() {
         <Heading />
         <SubHeading subHeading={"Recent Blog Posts"} />
         <BlogGrid blogPosts={blogs}></BlogGrid>
-        {/* <BlogList blogPosts={blogs}></BlogList> */}
         <SubHeading subHeading={"Categories"} />
         <CategoryList categories={categories}></CategoryList>
-        {/* <CategoryList categories={categories}></CategoryList> */}
         {/* <Footer /> */}
       </div>
+      <SuccessToast
+        show={isSuccess}
+        message={message}
+        onClose={resetSuccess}
+      />
+      <ErrorToast
+        show={isError}
+        message={message}
+        onClose={resetError}
+      />
     </>
   );
 }

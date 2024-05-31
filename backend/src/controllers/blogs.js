@@ -17,7 +17,7 @@ const createBlogs = async (req, res) => {
 
     res.status(200).json({
       message: "Blog created!",
-      data: [],
+      data: blog,
     });
   };
   
