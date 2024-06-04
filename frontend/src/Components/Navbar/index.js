@@ -28,7 +28,7 @@ export default function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#categories">
+              <a className="nav-link active" aria-current="page" href="/categories">
                 Categories
               </a>
             </li>

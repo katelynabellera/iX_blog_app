@@ -13,7 +13,7 @@ import categoryService from "../../Services/categoryService";
 import SuccessToast from "../SuccessToast";
 import ErrorToast from "../ErrorToast";
 
-import AddEditBlogModal from "../../Cmponents/AddEditBlogModal";
+import AddEditBlogModal from "../../Components/AddEditBlogModal";
 import DeleteBlogModal from "../../Components/DeleteBlogModal";
 
 export default function BlogsPage() {

@@ -11,6 +11,7 @@ import categoryService from "../../Services/categoryService";
 import SuccessToast from "../SuccessToast";
 import ErrorToast from "../ErrorToast";
 import Loading from "../Loading";
+import CategoriesPage from "../CategoriesPage";
 
 // Week 1: Import the blogPosts and categories from the dummy-data.json file
 // const data = require("../../dummy-data.json");
@@ -30,7 +31,7 @@ export default function HomePage() {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const blogs = await blogService.fetchBlogs();
+        const blogs = await blogService.getBlogs();
         setBlogs(blogs.data.reverse());
         setIsSuccess(true);
         setMessage(blogs.message);

@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import HomePage from "./Components/HomePage";
 import BlogsPage from "./Components/BlogsPage";
 import BlogPage from "./Components/Blog";
+import CategoriesPage from './Components/CategoriesPage';
 /* import "bootstrap/dist/js/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "bootstrap-icons/dotn/bootstrap-icons.css"; */
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/blogs/:blogId",
     element: <BlogPage />,
+  },
+  {
+    path: "/categories",
+    element: <CategoriesPage/>,
   },
 ]);
 

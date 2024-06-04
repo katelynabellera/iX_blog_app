@@ -4,17 +4,24 @@ const createBlog = async (blog) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: blog,
+    body: JSON.stringify(blog),
   });
 
   if (!response.ok) {
-    let res = await response.json();
-    throw res;
+    try {
+      let res = await response.json();
+      throw res.message || JSON.stringify(res);
+    } catch (err) {
+      console.log(err);
+      const error = new Error("Something went wrong");
+      throw error.message;
+    }
   }
 
-  const responseData = await response.json();
-  return responseData;
+  const blogsApiData = await response.json();
+  return blogsApiData;
 };
+
 
 const getBlogsByID = async (id) => {
   try {
@@ -48,7 +55,7 @@ const getBlogs = async () => {
       }
     );
     const blogsApiData = await data.json();
-    return blogsApiData.data;
+    return blogsApiData;
   } catch (error) {
     throw new Error(error);
   }
